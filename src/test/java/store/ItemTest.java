@@ -3,6 +3,7 @@ package store;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +33,8 @@ public class ItemTest {
         store.addItem(item);
 
         // then
-        List<Item> items = store.getAllStock();
-        assertEquals("콜라", items.getFirst().name);
+
+        assertEquals(10, store.getItem("콜라").count);
 
     }
 
@@ -43,11 +44,17 @@ public class ItemTest {
 //        // given
 //        String productInfo = "사이다,1000,8,탄산2+1";
 //        Item item = new Item(productInfo);
-//        String order = "[콜라-10]";
+//
+//        Convenience store = new Convenience();
+//        store.addItem(item);
+//
+//        String order = "[사이다-5]";
 //
 //        // when
-//        Customer customer = new Customer();
-//        customer.buyItems(order);
+//        store.buyItems(order);
+//
+//        // then
+//        assertEquals();
 //
 //    }
 }
