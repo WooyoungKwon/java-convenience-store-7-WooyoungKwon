@@ -7,11 +7,10 @@ public class Convenience {
     private final Map<String, Item> items = new HashMap<>();
 
     public void addItem(Item item) {
-        boolean isPromotion = item.promotion;
-        if (isPromotion) {
-            items.put("프로모션 " + item.name, item);
-        } else if (!isPromotion) {
-            items.put(item.name, item);
+        if (item.isPromotion()) {
+            items.put("프로모션 " + item.getName(), item);
+        } else if (!item.isPromotion()) {
+            items.put(item.getName(), item);
         }
     }
 
@@ -19,8 +18,9 @@ public class Convenience {
         return items.get(itemName);
     }
 
-    public Map<String, Item> getAllStock() {
-        return items;
+    public void buyItem(Order order) {
+        Item item = items.get(order.getName());
+        item.decreaseStock(order.getCount());
     }
 
 //    public int buyItems(String order) {
