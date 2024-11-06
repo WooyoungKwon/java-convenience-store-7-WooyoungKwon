@@ -24,7 +24,7 @@ public class OrderTest {
     @Test
     void 상품을_구매하면_재고가_n개만큼_줄어든다() {
         // given
-        String productInfo = "사이다,1000,8,탄산2+1";
+        String productInfo = "사이다,1000,8,null";
         Item item = new Item(new ItemDto(productInfo));
 
         Convenience store = new Convenience();

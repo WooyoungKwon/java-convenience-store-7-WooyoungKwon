@@ -1,8 +1,5 @@
 package store;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Item {
     private final String name;
     private long price;
@@ -14,6 +11,14 @@ public class Item {
         this.price = itemDto.getPrice();
         this.count = itemDto.getCount();
         this.promotion = itemDto.getPromotion();
+    }
+
+    public void addPromotion(Promotion promotion) {
+        if (this.promotion != null) {
+            throw new IllegalArgumentException("[ERROR] 이미 진행 중인 프로모션이 존재합니다..");
+        } else if (this.promotion == null) {
+            this.promotion = promotion;
+        }
     }
 
     public void decreaseStock(int count) {

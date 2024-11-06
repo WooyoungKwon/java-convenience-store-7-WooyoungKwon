@@ -14,7 +14,7 @@ public class ItemDto {
         this.name = parseInfo.get(0);
         this.price = Long.parseLong(parseInfo.get(1));
         this.count = Integer.parseInt(parseInfo.get(2));
-        this.promotion = promotion.parseString(parseInfo.get(3));
+        this.promotion = Promotion.parseStringToPromotion(parseInfo.get(3));
     }
 
     private List<String> parseInfo(String info) {
