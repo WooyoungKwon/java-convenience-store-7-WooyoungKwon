@@ -7,13 +7,13 @@ public class Item {
     private final String name;
     private long price;
     private int count;
-    private boolean promotion;
+    private Promotion promotion;
 
     public Item(ItemDto itemDto) {
         this.name = itemDto.getName();
         this.price = itemDto.getPrice();
         this.count = itemDto.getCount();
-        this.promotion = itemDto.isPromotion();
+        this.promotion = itemDto.getPromotion();
     }
 
     public void decreaseStock(int count) {
@@ -32,7 +32,7 @@ public class Item {
         return count;
     }
 
-    public boolean isPromotion() {
+    public Promotion getPromotion() {
         return promotion;
     }
 }

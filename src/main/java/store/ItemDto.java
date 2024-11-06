@@ -7,14 +7,14 @@ public class ItemDto {
     private String name;
     private long price;
     private int count;
-    private boolean promotion;
+    private Promotion promotion;
 
     public ItemDto(String itemInfo) {
         List<String> parseInfo = parseInfo(itemInfo);
         this.name = parseInfo.get(0);
         this.price = Long.parseLong(parseInfo.get(1));
         this.count = Integer.parseInt(parseInfo.get(2));
-        this.promotion = Boolean.parseBoolean(parseInfo.get(3));
+        this.promotion = promotion.parseString(parseInfo.get(3));
     }
 
     private List<String> parseInfo(String info) {
@@ -33,7 +33,7 @@ public class ItemDto {
         return count;
     }
 
-    public boolean isPromotion() {
+    public Promotion getPromotion() {
         return promotion;
     }
 }

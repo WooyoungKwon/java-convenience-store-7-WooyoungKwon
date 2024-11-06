@@ -7,9 +7,9 @@ public class Convenience {
     private final Map<String, Item> items = new HashMap<>();
 
     public void addItem(Item item) {
-        if (item.isPromotion()) {
+        if (item.getPromotion() != null) {
             items.put("프로모션 " + item.getName(), item);
-        } else if (!item.isPromotion()) {
+        } else if (item.getPromotion() == null) {
             items.put(item.getName(), item);
         }
     }
