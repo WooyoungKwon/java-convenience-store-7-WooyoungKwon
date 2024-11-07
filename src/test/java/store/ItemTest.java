@@ -3,6 +3,8 @@ package store;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -57,8 +59,17 @@ public class ItemTest {
         Item item = new Item(new ItemDto(itemInfo, factory));
 
         // when & then
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         assertThrows(IllegalArgumentException.class, () -> {
-            item.addPromotion(new Promotion("탄산1+2", 1, 2, "2024-01-01", "2024-12-31"));
+            item.addPromotion(
+                    new Promotion(
+                            "탄산1+2",
+                            1,
+                            2,
+                            LocalDate.parse("2024-01-01", formatter),
+                            LocalDate.parse("2024-12-31", formatter)
+                    ));
                 });
     }
 }

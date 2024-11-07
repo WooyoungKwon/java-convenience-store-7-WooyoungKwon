@@ -2,6 +2,8 @@ package store;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 public class PromotionTest {
@@ -11,7 +13,13 @@ public class PromotionTest {
         String inputPromotion = "탄산2+1";
 
         // when
-        Promotion promotion = new Promotion("탄산2+1", 1, 1, "2024-01-01", "2024-12-31");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Promotion promotion = new Promotion(
+                "탄산2+1",
+                1,
+                1,
+                LocalDate.parse("2024-01-01", formatter),
+                LocalDate.parse("2024-12-31", formatter));
 
         // then
         assertEquals(promotion.getName(), inputPromotion);
@@ -68,5 +76,24 @@ public class PromotionTest {
         convenienceService.buyItem(order);
 
         assertEquals(9, item2.getCount());
+    }
+
+    @Test
+    void 오늘_날짜가_프로모션_기간이_지났다면_적용하지_않는다() {
+        //given
+        PromotionFactory promotionFactory = new PromotionFactory();
+        promotionFactory.addPromotions("탄산2+1,2,1,2024-01-01,2024-08-01");
+
+        Convenience convenience = new Convenience();
+        convenience.addItem(new Item(new ItemDto("콜라,1000,10,탄산2+1", promotionFactory)));
+
+        Order order = new Order(new OrderDto("[콜라-3]"));
+
+        // when
+        ConvenienceService convenienceService = new ConvenienceService(convenience, new ConvenienceValidation());
+        int freeItemCount = convenienceService.buyItem(order);
+
+        // then
+        assertEquals(0, freeItemCount);
     }
 }

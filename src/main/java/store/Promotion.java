@@ -1,16 +1,15 @@
 package store;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class Promotion {
     private final String name;
     private final int buyNumber;
     private final int getNumber;
-    private final String startDate;
-    private final String endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
-    public Promotion(String name, int buyNumber, int getNumber, String startDate, String endDate) {
+    public Promotion(String name, int buyNumber, int getNumber, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.buyNumber = buyNumber;
         this.getNumber = getNumber;
@@ -22,7 +21,19 @@ public class Promotion {
         return name;
     }
 
-    public String getStartDate() {
+    public int getBuyNumber() {
+        return buyNumber;
+    }
+
+    public int getGetNumber() {
+        return getNumber;
+    }
+
+    public LocalDate getStartDate() {
         return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
     }
 }

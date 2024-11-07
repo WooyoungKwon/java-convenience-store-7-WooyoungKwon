@@ -12,7 +12,7 @@ public class ConvenienceValidation {
         }
     }
 
-    public void isRestQuantity(int storeItemCount, int orderItemCount) {
+    public void restQuantity(int storeItemCount, int orderItemCount) {
         if (storeItemCount < orderItemCount) {
             throw new IllegalArgumentException(OVER_QUANTITY);
         }
