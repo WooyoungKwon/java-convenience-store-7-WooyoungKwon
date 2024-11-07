@@ -1,28 +1,28 @@
 package store;
 
-public enum Promotion {
-    SODA_TWO_PLUS_ONE("탄산2+1"),
-    SODA_ONE_PLUS_ONE("탄산1+1"),
-    RECOMMENDED_MD("MD추천상품"),
-    FLASH_DISCOUNT("반짝할인"),
-    NOTHING("null");
+import java.util.ArrayList;
+import java.util.List;
 
-    private final String display;
+public class Promotion {
+    private final String name;
+    private final int buyNumber;
+    private final int getNumber;
+    private final String startDate;
+    private final String endDate;
 
-    Promotion(String display) {
-        this.display = display;
+    public Promotion(String name, int buyNumber, int getNumber, String startDate, String endDate) {
+        this.name = name;
+        this.buyNumber = buyNumber;
+        this.getNumber = getNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
-    public String getDisplay() {
-        return display;
+    public String getName() {
+        return name;
     }
 
-    public static Promotion parseStringToPromotion(String promotion) {
-        for (Promotion p : Promotion.values()) {
-            if (p.getDisplay().equals(promotion)) {
-                return p;
-            }
-        }
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 프로모션입니다.");
+    public String getStartDate() {
+        return startDate;
     }
 }
