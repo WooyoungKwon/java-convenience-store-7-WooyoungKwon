@@ -9,16 +9,23 @@ public class ItemDto {
     private int count;
     private Promotion promotion;
 
-    public ItemDto(String itemInfo) {
+    public ItemDto(String itemInfo, PromotionFactory promotionFactory) {
         List<String> parseInfo = parseInfo(itemInfo);
         this.name = parseInfo.get(0);
         this.price = Long.parseLong(parseInfo.get(1));
         this.count = Integer.parseInt(parseInfo.get(2));
-        this.promotion = Promotion.parseStringToPromotion(parseInfo.get(3));
+        this.promotion = nullValidation(parseInfo, promotionFactory);
     }
 
     private List<String> parseInfo(String info) {
         return Arrays.asList(info.split(","));
+    }
+
+    private Promotion nullValidation(List<String> parseInfo, PromotionFactory promotionFactory) {
+        if (parseInfo.get(3).equals("null")) {
+            return null;
+        }
+        return promotionFactory.findByName(parseInfo.get(3));
     }
 
     public String getName() {

@@ -16,9 +16,8 @@ public class Item {
     public void addPromotion(Promotion promotion) {
         if (this.promotion != null) {
             throw new IllegalArgumentException("[ERROR] 이미 진행 중인 프로모션이 존재합니다..");
-        } else if (this.promotion == null) {
-            this.promotion = promotion;
         }
+        this.promotion = promotion;
     }
 
     public void decreaseStock(int count) {
