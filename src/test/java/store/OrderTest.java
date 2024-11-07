@@ -25,13 +25,15 @@ public class OrderTest {
     @Test
     void 재고에_없는_상품을_주문하면_에러가_발생한다() {
         // given
+        Convenience convenience = new Convenience();
+        ConvenienceValidation validation = new ConvenienceValidation();
         String inputOrder = "[새콤달콤-3]";
-        Convenience store = new Convenience();
+        ConvenienceService service = new ConvenienceService(convenience, validation);
 
         // when & then
         Order order = new Order(new OrderDto(inputOrder));
         assertThrows(IllegalArgumentException.class, () ->
-                store.buyItem(order)
+                service.buyItem(order)
         );
     }
 
@@ -44,13 +46,15 @@ public class OrderTest {
         Item item = new Item(new ItemDto(productInfo, factory));
 
         Convenience store = new Convenience();
+        ConvenienceValidation validation = new ConvenienceValidation();
         store.addItem(item);
+        ConvenienceService storeService = new ConvenienceService(store, validation);
 
         String inputOrder = "[사이다-5]";
 
         // when
         Order order = new Order(new OrderDto(inputOrder));
-        store.buyItem(order);
+        storeService.buyItem(order);
 
         // then
         assertEquals(3, item.getCount());
@@ -65,14 +69,16 @@ public class OrderTest {
         Item item = new Item(new ItemDto(productInfo, factory));
 
         Convenience store = new Convenience();
+        ConvenienceValidation validation = new ConvenienceValidation();
         store.addItem(item);
+        ConvenienceService storeService = new ConvenienceService(store, validation);
 
         String inputOrder = "[사이다-4]";
         Order order = new Order(new OrderDto(inputOrder));
 
         // when & then
         assertThrows(IllegalArgumentException.class, () ->
-                store.buyItem(order)
+                storeService.buyItem(order)
         );
     }
 }

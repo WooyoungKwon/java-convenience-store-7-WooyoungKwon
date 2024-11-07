@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Convenience {
-    ConvenienceUtils utils = new ConvenienceUtils();
     ConvenienceValidation validation = new ConvenienceValidation();
+    ConvenienceUtils utils = new ConvenienceUtils(validation);
 
     private final Map<String, Item> items = new HashMap<>();
 
@@ -13,24 +13,15 @@ public class Convenience {
         items.put(utils.createItemKey(item), item);
     }
 
+    public Map<String, Item> getItems() {
+        return items;
+    }
 
-    public Item getItem(String itemName) {
+    public Item findItem(String itemName) {
         return items.get(itemName);
     }
 
     public Item getPromotionItem(String itemName) {
         return items.get("프로모션 " + itemName);
     }
-
-    public void buyItem(Order order) {
-        String itemName = order.getName();
-        validation.isItemExist(items, order);
-        Item item = items.get(itemName);
-        validation.isExcessQuantity(order, item);
-        item.decreaseStock(order.getCount());
-    }
-
-//    public int buyItems(String order) {
-//
-//    }
 }
