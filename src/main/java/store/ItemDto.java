@@ -5,14 +5,14 @@ import java.util.List;
 
 public class ItemDto {
     private String name;
-    private long price;
+    private int price;
     private int count;
     private Promotion promotion;
 
     public ItemDto(String itemInfo, PromotionFactory promotionFactory) {
         List<String> parseInfo = parseInfo(itemInfo);
         this.name = parseInfo.get(0);
-        this.price = Long.parseLong(parseInfo.get(1));
+        this.price = Integer.parseInt(parseInfo.get(1));
         this.count = Integer.parseInt(parseInfo.get(2));
         this.promotion = nullValidation(parseInfo, promotionFactory);
     }
@@ -32,7 +32,7 @@ public class ItemDto {
         return name;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 

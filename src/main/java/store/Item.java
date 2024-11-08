@@ -2,7 +2,7 @@ package store;
 
 public class Item {
     private final String name;
-    private long price;
+    private int price;
     private int count;
     private Promotion promotion;
 
@@ -28,7 +28,7 @@ public class Item {
         return name;
     }
 
-    public long getPrice() {
+    public int getPrice() {
         return price;
     }
 

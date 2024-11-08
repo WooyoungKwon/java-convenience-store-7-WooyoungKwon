@@ -1,13 +1,14 @@
 package store;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Convenience {
     ConvenienceValidation validation = new ConvenienceValidation();
     ConvenienceUtils utils = new ConvenienceUtils(validation);
 
-    private final Map<String, Item> items = new HashMap<>();
+    private final Map<String, Item> items = new LinkedHashMap<>();
 
     public void addItem(Item item) {
         items.put(utils.createItemKey(item), item);
