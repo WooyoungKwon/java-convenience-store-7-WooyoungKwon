@@ -13,20 +13,16 @@ public class OutputHandler {
 
     public static void printItemInfo(Item item) {
         System.out.print("- " + item.getName() + " " + OutputHandler.parseDigits(item.getPrice()) + "원 ");
-        formatItemNoStock(item);
-        if (item.getPromotion() == null) {
-            System.out.println();
-            return;
-        }
-        System.out.println(item.getPromotion().getName());
-    }
-
-    private static void formatItemNoStock(Item item) {
         if (item.getCount() == 0) {
             System.out.println("재고 없음");
             return;
         }
         System.out.print(item.getCount() + "개 ");
+        if (item.getPromotion() == null) {
+            System.out.println();
+            return;
+        }
+        System.out.println(item.getPromotion().getName());
     }
 
     public static void printReceipt(Receipt receipt) {

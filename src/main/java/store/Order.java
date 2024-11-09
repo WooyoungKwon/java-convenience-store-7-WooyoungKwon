@@ -17,7 +17,9 @@ public class Order {
     public List<Integer> execute(Item item) {
         Promotion promotion = item.getPromotion();
         if (item.getPromotion() != null) {
-            this.count += needForPromotion(promotion);
+            if (this.count != item.getCount()) {
+                this.count += needForPromotion(promotion);
+            }
         }
         int freeItemCount = getFreeItemCount(this, item);
         item.decreaseStock(count);
@@ -43,6 +45,7 @@ public class Order {
         }
         return 0;
     }
+
     private boolean validateDate(Promotion promotion) {
         if (promotion == null) {
             return false;

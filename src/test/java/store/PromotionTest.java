@@ -72,12 +72,12 @@ public class PromotionTest {
         ConvenienceService convenienceService = new ConvenienceService(convenience, validation);
 
         // when
-        String orderInfo = "[콜라-1]";
+        String orderInfo = "[콜라-3]";
         Order order = new Order(new OrderDto(orderInfo));
         convenienceService.buyItem(order);
 
         // then
-        assertEquals(9, item2.getCount());
+        assertEquals(7, item2.getCount());
     }
 
     @Test

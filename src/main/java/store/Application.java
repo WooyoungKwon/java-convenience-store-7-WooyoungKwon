@@ -2,6 +2,8 @@ package store;
 
 import static store.io.ConstMessage.WANT_MEMBERSHIP_DISCOUNT;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import store.io.ConstMessage;
@@ -37,8 +39,10 @@ public class Application {
             convenienceService.printAllStock();
             // 주문 입력 받기
             Receipt receipt = new Receipt(new ArrayList<>());
+            List<String> ordersInfo = InputHandler.inputOrder();
+            boolean isApplyMembership = InputHandler.yesOrNo(WANT_MEMBERSHIP_DISCOUNT);
             try {
-                for (String orderInfo : InputHandler.inputOrder()) {
+                for (String orderInfo : ordersInfo) {
                     Order order = new Order(new OrderDto(orderInfo));
                     // 구매
                     ReceiptDto receiptDto = convenienceService.buyItem(order);
@@ -46,12 +50,11 @@ public class Application {
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + "\n");
-                continue;
             } catch (RuntimeException e) {
                 continue;
             }
             receipt.create();
-            if (InputHandler.yesOrNo(WANT_MEMBERSHIP_DISCOUNT)) {
+            if (isApplyMembership) {
                 receipt.membershipDiscounting();
             }
             receipt.calculateFinalPrice();
