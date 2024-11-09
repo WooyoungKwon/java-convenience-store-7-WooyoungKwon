@@ -12,8 +12,14 @@ public class ConvenienceValidation {
         }
     }
 
-    public void restQuantity(int storeItemCount, int orderItemCount) {
-        if (storeItemCount < orderItemCount) {
+    public void validQuantity(Map<String, Item> items, Order order) {
+        int totalQuantity = 0;
+        for (String name : items.keySet()) {
+            if (name.contains(order.getName())) {
+                totalQuantity += items.get(name).getCount();
+            }
+        }
+        if (totalQuantity < order.getCount()) {
             throw new IllegalArgumentException(OVER_QUANTITY);
         }
     }

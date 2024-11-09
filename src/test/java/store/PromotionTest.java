@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class PromotionTest {
@@ -94,9 +93,9 @@ public class PromotionTest {
 
         // when
         ConvenienceService convenienceService = new ConvenienceService(convenience, new ConvenienceValidation());
-        Map<String, String> receipt = convenienceService.buyItem(order);
+        ReceiptDto receiptDto = convenienceService.buyItem(order);
 
         // then
-        assertEquals("0", receipt.get("증정"));
+        assertEquals(0, receiptDto.getBonusCount());
     }
 }

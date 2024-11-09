@@ -35,9 +35,11 @@ public class InputHandler {
         throw new IllegalArgumentException(INVALID_INPUT);
     }
 
-    public static String inputOrder() {
+    public static List<String> inputOrder() {
         System.out.println("구매하실 상품명과 수량을 입력해 주세요. (예: [사이다-2],[감자칩-1])");
-        return Console.readLine();
+        String orders = Console.readLine();
+        System.out.println();
+        return List.of(orders.split(","));
     }
 
     public List<String> readMdFile(String fileName) {

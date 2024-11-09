@@ -1,7 +1,9 @@
 package store;
 
+import static store.io.ConstMessage.WANT_MEMBERSHIP_DISCOUNT;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import store.io.ConstMessage;
 import store.io.InputHandler;
 import store.io.OutputHandler;
@@ -34,19 +36,27 @@ public class Application {
             // 모든 재고 출력
             convenienceService.printAllStock();
             // 주문 입력 받기
-            String orderInfo = InputHandler.inputOrder();
+            Receipt receipt = new Receipt(new ArrayList<>());
             try {
-                Order order = new Order(new OrderDto(orderInfo));
-                // 구매
-                Map<String, String> receipt = convenienceService.buyItem(order);
-                // 영수증 출력
-                System.out.println(receipt.get("상품명") + "\t" + receipt.get("수량") + "\t" + receipt.get("금액") + "\t" + receipt.get("증정"));
+                for (String orderInfo : InputHandler.inputOrder()) {
+                    Order order = new Order(new OrderDto(orderInfo));
+                    // 구매
+                    ReceiptDto receiptDto = convenienceService.buyItem(order);
+                    receipt.addReceipt(receiptDto);
+                }
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage() + "\n");
                 continue;
             } catch (RuntimeException e) {
                 continue;
             }
+            receipt.create();
+            if (InputHandler.yesOrNo(WANT_MEMBERSHIP_DISCOUNT)) {
+                receipt.membershipDiscounting();
+            }
+            receipt.calculateFinalPrice();
+            // 영수증 출력
+            OutputHandler.printReceipt(receipt);
 
             if (!InputHandler.yesOrNo(ConstMessage.WANT_CONTINUE_BUY)) {
                 break;

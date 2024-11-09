@@ -25,7 +25,6 @@ public class Order {
     }
 
     // 무료로 더 받을 수 있는 수량 안내
-
     private int needForPromotion(Promotion promotion) {
         if (this.count % (promotion.getBuyNumber() + promotion.getGetNumber()) == promotion.getBuyNumber()) {
             if (InputHandler.wantToAdd(this.name, promotion.getGetNumber())) {
