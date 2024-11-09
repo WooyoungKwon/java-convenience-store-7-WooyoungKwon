@@ -9,13 +9,12 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import store.Application;
 
 public class InputHandler {
     public static boolean wantToAdd(String name, int getNumber) {
-        String answer = Console.readLine();
         System.out.println("현재 " + name + "은(는) " + getNumber
                 + "개를 무료로 더 받을 수 있습니다. 추가하시겠습니까? (Y/N)");
+        String answer = Console.readLine();
         if (answer.equalsIgnoreCase("y")) {
             return true;
         } else if (answer.equalsIgnoreCase("n")) {
@@ -24,8 +23,8 @@ public class InputHandler {
         throw new IllegalArgumentException(INVALID_INPUT);
     }
 
-    public static boolean wantContinueBuy() {
-        System.out.println("감사합니다. 구매하고 싶은 다른 상품이 있나요? (Y/N)");
+    public static boolean yesOrNo(String message) {
+        System.out.println(message);
         String answer = Console.readLine();
 
         if (answer.equalsIgnoreCase("y")) {
@@ -36,7 +35,10 @@ public class InputHandler {
         throw new IllegalArgumentException(INVALID_INPUT);
     }
 
-
+    public static String inputOrder() {
+        System.out.println("구매하실 상품명과 수량을 입력해 주세요. (예: [사이다-2],[감자칩-1])");
+        return Console.readLine();
+    }
 
     public List<String> readMdFile(String fileName) {
         List<String> result = new ArrayList<>();

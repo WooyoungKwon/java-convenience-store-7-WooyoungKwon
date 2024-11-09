@@ -20,6 +20,10 @@ public class Item {
         this.promotion = promotion;
     }
 
+    public void addStock(int count) {
+        this.count += count;
+    }
+
     public void decreaseStock(int count) {
         this.count -= count;
     }
