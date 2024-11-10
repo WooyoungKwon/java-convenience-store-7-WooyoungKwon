@@ -1,6 +1,7 @@
 package store.io;
 
 import static store.io.ConstErrorMessage.INVALID_INPUT;
+import static store.io.ConstMessage.INPUT_ORDER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.BufferedReader;
@@ -15,6 +16,7 @@ public class InputHandler {
     public static boolean wantToAdd(String name, int getNumber) {
         OutputHandler.printGuideMessage(ConstMessage.CAN_MORE_FREE_ITEM(name, getNumber));
         String answer = Console.readLine();
+        OutputHandler.printLinebreak();
         if (answer.equalsIgnoreCase("y")) {
             return true;
         } else if (answer.equalsIgnoreCase("n")) {
@@ -24,9 +26,9 @@ public class InputHandler {
     }
 
     public static boolean yesOrNo(String message) {
-        System.out.println(message);
+        OutputHandler.printGuideMessage(message);
         String answer = Console.readLine();
-
+        OutputHandler.printLinebreak();
         if (answer.equalsIgnoreCase("y")) {
             return true;
         } else if (answer.equalsIgnoreCase("n")) {
@@ -36,9 +38,9 @@ public class InputHandler {
     }
 
     public static List<String> inputOrder() {
-        System.out.println("구매하실 상품명과 수량을 입력해 주세요. (예: [사이다-2],[감자칩-1])");
+        OutputHandler.printGuideMessage(INPUT_ORDER);
         String orders = Console.readLine();
-        System.out.println();
+        OutputHandler.printLinebreak();
         return List.of(orders.split(","));
     }
 

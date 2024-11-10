@@ -53,7 +53,8 @@ public class ConvenienceController {
     }
 
     private void membershipProcess(Receipt receipt) {
-        if (InputHandler.yesOrNo(WANT_MEMBERSHIP_DISCOUNT)) {
+        boolean answer = InputHandler.yesOrNo(WANT_MEMBERSHIP_DISCOUNT);
+        if (answer) {
             receipt.membershipDiscounting();
         }
         if (receipt == null) {
