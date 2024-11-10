@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,8 +68,8 @@ public class ItemTest {
                             "탄산1+2",
                             1,
                             2,
-                            LocalDate.parse("2024-01-01", formatter),
-                            LocalDate.parse("2024-12-31", formatter)
+                            LocalDate.parse("2024-01-01", formatter).atStartOfDay(),
+                            LocalDate.parse("2024-12-31", formatter).atStartOfDay()
                     ));
                 });
     }

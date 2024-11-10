@@ -1,6 +1,7 @@
 package store;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,8 @@ public class PromotionFactory {
                 splitInput.get(0),
                 Integer.parseInt(splitInput.get(1)),
                 Integer.parseInt(splitInput.get(2)),
-                LocalDate.parse(splitInput.get(3), formatter),
-                LocalDate.parse(splitInput.get(4), formatter)
+                LocalDate.parse(splitInput.get(3), formatter).atStartOfDay(),
+                LocalDate.parse(splitInput.get(4), formatter).atStartOfDay()
         );
     }
 

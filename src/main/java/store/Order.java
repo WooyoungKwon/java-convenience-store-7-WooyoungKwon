@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import store.io.InputHandler;
+import camp.nextstep.edu.missionutils.DateTimes;
 
 public class Order {
     private final String name;
@@ -49,7 +50,7 @@ public class Order {
     private boolean validateDate(Promotion promotion) {
         if (promotion == null) {
             return false;
-        } else if (LocalDate.now().isBefore(promotion.getStartDate()) || LocalDate.now().isAfter(promotion.getEndDate())) {
+        } else if (DateTimes.now().isBefore(promotion.getStartDate()) || DateTimes.now().isAfter(promotion.getEndDate())) {
             return false;
         }
         return true;

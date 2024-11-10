@@ -1,15 +1,15 @@
 package store;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Promotion {
     private final String name;
     private final int buyNumber;
     private final int getNumber;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
 
-    public Promotion(String name, int buyNumber, int getNumber, LocalDate startDate, LocalDate endDate) {
+    public Promotion(String name, int buyNumber, int getNumber, LocalDateTime startDate, LocalDateTime endDate) {
         this.name = name;
         this.buyNumber = buyNumber;
         this.getNumber = getNumber;
@@ -29,11 +29,11 @@ public class Promotion {
         return getNumber;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 }
