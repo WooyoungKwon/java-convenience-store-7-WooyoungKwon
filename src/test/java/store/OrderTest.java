@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import store.convenience.Convenience;
+import store.convenience.ConvenienceService;
+import store.convenience.ConvenienceValidation;
+import store.item.Item;
+import store.item.ItemDto;
+import store.item.promotion.PromotionFactory;
+import store.order.Order;
+import store.order.OrderDto;
 
 public class OrderTest {
     @DisplayName("주문을 생성한다.")
@@ -33,7 +41,7 @@ public class OrderTest {
         // when & then
         Order order = new Order(new OrderDto(inputOrder));
         assertThrows(IllegalArgumentException.class, () ->
-                service.buyItem(order)
+                service.purchaseItem(order)
         );
     }
 
@@ -54,7 +62,7 @@ public class OrderTest {
 
         // when
         Order order = new Order(new OrderDto(inputOrder));
-        storeService.buyItem(order);
+        storeService.purchaseItem(order);
 
         // then
         assertEquals(3, item.getCount());
@@ -78,7 +86,7 @@ public class OrderTest {
 
         // when & then
         assertThrows(IllegalArgumentException.class, () ->
-                storeService.buyItem(order)
+                storeService.purchaseItem(order)
         );
     }
 }

@@ -4,10 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import store.convenience.Convenience;
+import store.item.Item;
+import store.item.ItemDto;
+import store.item.promotion.Promotion;
+import store.item.promotion.PromotionFactory;
 
 public class ItemTest {
     @DisplayName("상품을 생성한다.")
