@@ -1,8 +1,10 @@
-package store;
+package store.convenience;
 
 import static store.io.ConstErrorMessage.OVER_QUANTITY;
 
 import java.util.Map;
+import store.item.Item;
+import store.order.Order;
 
 public class ConvenienceUtils {
 

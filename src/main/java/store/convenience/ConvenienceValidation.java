@@ -1,12 +1,14 @@
-package store;
+package store.convenience;
 
 import static store.io.ConstErrorMessage.NOT_EXIST_ITEM;
 import static store.io.ConstErrorMessage.OVER_QUANTITY;
 
 import java.util.Map;
+import store.item.Item;
+import store.order.Order;
 
 public class ConvenienceValidation {
-    public void isItemExist(Map<String, Item> items, String itemName) {
+    public void validExist(Map<String, Item> items, String itemName) {
         if (!items.containsKey(itemName) && !items.containsKey("프로모션 " + itemName)) {
             throw new IllegalArgumentException(NOT_EXIST_ITEM);
         }

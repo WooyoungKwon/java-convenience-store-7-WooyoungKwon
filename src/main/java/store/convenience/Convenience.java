@@ -1,8 +1,8 @@
-package store;
+package store.convenience;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import store.item.Item;
 
 public class Convenience {
     ConvenienceValidation validation = new ConvenienceValidation();

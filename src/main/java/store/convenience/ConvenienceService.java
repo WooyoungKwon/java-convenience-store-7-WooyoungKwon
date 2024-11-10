@@ -1,9 +1,13 @@
-package store;
+package store.convenience;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import store.item.Item;
+import store.order.Order;
+import store.item.promotion.Promotion;
+import store.receipt.ReceiptDto;
 import store.io.InputHandler;
 import store.io.OutputHandler;
 
@@ -21,24 +25,31 @@ public class ConvenienceService {
         Map<String, Item> items = convenience.getItems();
         Collection<Item> values = items.values();
         for (Item item : values) {
-            OutputHandler.printItemInfo(item);
+            OutputHandler.printItemCount(item);
+            OutputHandler.printItemPromotion(item);
         }
         OutputHandler.printLinebreak();
     }
 
-    public ReceiptDto buyItem(Order order) {
-        validator.isItemExist(convenience.getItems(), order.getName());
+    public List<ReceiptDto> purchaseWithReceipt(List<Order> orders) {
+        List<ReceiptDto> receiptDtos = new ArrayList<>();
+        for (Order order : orders) {
+            receiptDtos.add(purchaseItem(order));
+        }
+        return receiptDtos;
+    }
+
+    public ReceiptDto purchaseItem(Order order) {
+        validator.validExist(convenience.getItems(), order.getName());
         validator.validQuantity(convenience.getItems(), order);
-        Item item = null;
+        Item item;
         int bonusItemCount = 0;
         try {
             item = getAvailableProduct(order);
         } catch (IllegalStateException e) {
-            // 사지 않겠다
             if (!InputHandler.yesOrNo(e.getMessage())) {
                 throw new RuntimeException();
             }
-            // 사겠다
             bonusItemCount = calculateBonusItem(order);
             item = continueBuy(order);
         }

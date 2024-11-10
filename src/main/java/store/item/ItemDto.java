@@ -1,7 +1,9 @@
-package store;
+package store.item;
 
 import java.util.Arrays;
 import java.util.List;
+import store.item.promotion.Promotion;
+import store.item.promotion.PromotionFactory;
 
 public class ItemDto {
     private String name;

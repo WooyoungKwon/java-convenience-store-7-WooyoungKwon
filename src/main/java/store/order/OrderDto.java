@@ -1,4 +1,4 @@
-package store;
+package store.order;
 
 import static store.io.ConstErrorMessage.INVALID_ORDER_INPUT;
 
