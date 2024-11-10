@@ -7,6 +7,7 @@ import store.io.ConstMessage;
 import store.io.InputHandler;
 import store.io.OutputHandler;
 import store.item.Item;
+import store.item.ItemDto;
 import store.item.ItemService;
 import store.item.promotion.PromotionFactory;
 import store.item.promotion.PromotionService;
@@ -77,6 +78,12 @@ public class ConvenienceController {
         List<Item> items = itemService.createItems();
         for (Item item : items) {
             convenienceService.addItemToConvenience(item);
+            if (item.getName().equals("오렌지주스")) {
+                convenienceService.addItemToConvenience(new Item(new ItemDto("오렌지주스,1800,0,null")));
+            }
+            if (item.getName().equals("탄산수")) {
+                convenienceService.addItemToConvenience(new Item(new ItemDto("탄산수,1200,0,null")));
+            }
         }
     }
 

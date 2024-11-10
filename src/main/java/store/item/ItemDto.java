@@ -11,6 +11,14 @@ public class ItemDto {
     private int count;
     private Promotion promotion;
 
+    public ItemDto(String itemInfo) {
+        List<String> parseInfo = parseInfo(itemInfo);
+        this.name = parseInfo.get(0);
+        this.price = Integer.parseInt(parseInfo.get(1));
+        this.count = Integer.parseInt(parseInfo.get(2));
+        this.promotion = null;
+    }
+
     public ItemDto(String itemInfo, PromotionFactory promotionFactory) {
         List<String> parseInfo = parseInfo(itemInfo);
         this.name = parseInfo.get(0);
