@@ -1,6 +1,7 @@
-package store;
+package store.receipt;
 
 import java.util.List;
+import store.item.Item;
 
 public class ReceiptDto {
     private String itemName;

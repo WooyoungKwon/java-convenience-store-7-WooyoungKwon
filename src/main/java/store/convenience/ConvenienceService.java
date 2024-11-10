@@ -21,6 +21,10 @@ public class ConvenienceService {
         this.validator = validator;
     }
 
+    public void addItemToConvenience(Item item) {
+        convenience.addItem(item);
+    }
+
     public void printAllStock() {
         Map<String, Item> items = convenience.getItems();
         Collection<Item> values = items.values();

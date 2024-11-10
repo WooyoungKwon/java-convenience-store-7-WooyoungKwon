@@ -4,6 +4,7 @@ import static store.io.ConstErrorMessage.INVALID_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -12,8 +13,7 @@ import java.util.List;
 
 public class InputHandler {
     public static boolean wantToAdd(String name, int getNumber) {
-        System.out.println("현재 " + name + "은(는) " + getNumber
-                + "개를 무료로 더 받을 수 있습니다. 추가하시겠습니까? (Y/N)");
+        OutputHandler.printGuideMessage(ConstMessage.CAN_MORE_FREE_ITEM(name, getNumber));
         String answer = Console.readLine();
         if (answer.equalsIgnoreCase("y")) {
             return true;
@@ -43,18 +43,22 @@ public class InputHandler {
     }
 
     public List<String> readMdFile(String fileName) {
-        List<String> result = new ArrayList<>();
+        List<String> result;
         try (InputStream inputStream = InputHandler.class.getClassLoader().getResourceAsStream(fileName);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            result = inputLines(reader);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 
-            reader.readLine();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                result.add(line);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    private List<String> inputLines(BufferedReader reader) throws IOException {
+        List<String> result = new ArrayList<>();
+        reader.readLine();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            result.add(line);
         }
         return result;
     }

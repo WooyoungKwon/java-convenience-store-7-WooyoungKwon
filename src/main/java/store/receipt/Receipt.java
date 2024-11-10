@@ -1,5 +1,6 @@
-package store;
+package store.receipt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Receipt {
@@ -11,17 +12,17 @@ public class Receipt {
     private int payMoney;
     private int discountTargetPrice;
 
-    List<ReceiptDto> receiptDtos;
+    private final List<ReceiptDto> receiptDtos;
 
-    public Receipt(List<ReceiptDto> receiptDtos) {
-        this.receiptDtos = receiptDtos;
+    public Receipt() {
+        this.receiptDtos = new ArrayList<>();
     }
 
     public void addReceipt(ReceiptDto receiptDto) {
         this.receiptDtos.add(receiptDto);
     }
 
-    public void create() {
+    public void calculatePrice() {
         for (ReceiptDto receiptDto : this.receiptDtos) {
             this.totalPrice += receiptDto.getPrice();
             this.totalCount += receiptDto.getCount();
