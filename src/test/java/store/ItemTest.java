@@ -49,7 +49,7 @@ public class ItemTest {
         assertEquals(10, store.findItem("콜라").getCount());
         assertEquals(null, store.findItem("콜라").getPromotion());
         assertEquals(20, store.findItem("프로모션 사이다").getCount());
-        assertEquals("반짝할인", store.findItem("프로모션 사이다").getPromotion().getName());
+        assertEquals("반짝할인", store.findItem("프로모션 사이다").getPromotion().name());
 
     }
 

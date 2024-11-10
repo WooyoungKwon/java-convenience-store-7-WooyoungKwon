@@ -4,7 +4,7 @@ import store.item.promotion.Promotion;
 
 public class Item {
     private final String name;
-    private int price;
+    private final int price;
     private int count;
     private Promotion promotion;
 

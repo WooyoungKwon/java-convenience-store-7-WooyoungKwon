@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionFactory {
-    private List<Promotion> promotions;
+    private final List<Promotion> promotions;
 
     public PromotionFactory() {
         promotions = new ArrayList<>();
@@ -36,11 +36,7 @@ public class PromotionFactory {
 
     public Promotion findByName(String promotionName) {
         return promotions.stream()
-                .filter(promotion -> promotion.getName().equals(promotionName))
+                .filter(promotion -> promotion.name().equals(promotionName))
                 .findAny().orElse(null);
-    }
-
-    public List<Promotion> getPromotions() {
-        return promotions;
     }
 }

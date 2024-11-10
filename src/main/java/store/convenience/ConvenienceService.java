@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import store.item.Item;
+import store.item.ItemDto;
+import store.item.promotion.PromotionFactory;
 import store.order.Order;
 import store.item.promotion.Promotion;
 import store.receipt.ReceiptDto;
@@ -24,6 +26,8 @@ public class ConvenienceService {
     public void addItemToConvenience(Item item) {
         convenience.addItem(item);
     }
+
+
 
     public void printAllStock() {
         Map<String, Item> items = convenience.getItems();
@@ -72,18 +76,18 @@ public class ConvenienceService {
 
     private int calculateBonusItem(Order order) {
         Item promotionItem = convenience.findItem("프로모션 " + order.getName());
-        return promotionItem.getCount() / (promotionItem.getPromotion().getGetNumber() + promotionItem.getPromotion().getBuyNumber());
+        return promotionItem.getCount() / (promotionItem.getPromotion().getNumber() + promotionItem.getPromotion()
+                .buyNumber());
     }
 
     private Item getAvailableProduct(Order order) {
-        // 프로모션 제품이 존재하고, 프로모션 제품의 재고가 사려는 개수보다 많다면 프로모션 제품을 반환한다.
         if (convenience.getItems().containsKey("프로모션 " + order.getName())) {
             Item promotionItem = convenience.findItem("프로모션 " + order.getName());
             if (promotionItem.getCount() >= order.getCount()) {
                 return promotionItem;
             }
             Promotion promotion = promotionItem.getPromotion();
-            int overCount = promotionItem.getCount() % (promotion.getBuyNumber() + promotion.getGetNumber())
+            int overCount = promotionItem.getCount() % (promotion.buyNumber() + promotion.getNumber())
                     + (order.getCount() - promotionItem.getCount());
             throw new IllegalStateException(
                     "현재 " + order.getName() + " " + overCount + "개는 프로모션 할인이 적용되지 않습니다. 그래도 구매하시겠습니까? (Y/N)");

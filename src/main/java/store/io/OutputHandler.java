@@ -29,7 +29,7 @@ public class OutputHandler {
             System.out.println();
             return;
         }
-        System.out.println(item.getPromotion().getName());
+        System.out.println(item.getPromotion().name());
     }
 
     public static void printReceipt(Receipt receipt) {

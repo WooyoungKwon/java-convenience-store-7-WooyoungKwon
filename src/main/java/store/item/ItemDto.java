@@ -6,18 +6,10 @@ import store.item.promotion.Promotion;
 import store.item.promotion.PromotionFactory;
 
 public class ItemDto {
-    private String name;
-    private int price;
-    private int count;
-    private Promotion promotion;
-
-    public ItemDto(String itemInfo) {
-        List<String> parseInfo = parseInfo(itemInfo);
-        this.name = parseInfo.get(0);
-        this.price = Integer.parseInt(parseInfo.get(1));
-        this.count = Integer.parseInt(parseInfo.get(2));
-        this.promotion = null;
-    }
+    private final String name;
+    private final int price;
+    private final int count;
+    private final Promotion promotion;
 
     public ItemDto(String itemInfo, PromotionFactory promotionFactory) {
         List<String> parseInfo = parseInfo(itemInfo);

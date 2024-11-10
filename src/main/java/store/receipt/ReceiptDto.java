@@ -4,11 +4,11 @@ import java.util.List;
 import store.item.Item;
 
 public class ReceiptDto {
-    private String itemName;
-    private int count;
-    private int price;
-    private int eachPrice;
-    private int bonusCount;
+    private final String itemName;
+    private final int count;
+    private final int price;
+    private final int eachPrice;
+    private final int bonusCount;
     private int notBonusCount;
 
     public ReceiptDto(Item item, List<Integer> result) {
@@ -18,8 +18,8 @@ public class ReceiptDto {
         this.eachPrice = item.getPrice();
         this.bonusCount = result.get(2);
         if (item.getPromotion() != null) {
-            int b = item.getPromotion().getGetNumber() + item.getPromotion().getBuyNumber();
-            int c = this.bonusCount / item.getPromotion().getGetNumber();
+            int b = item.getPromotion().getNumber() + item.getPromotion().buyNumber();
+            int c = this.bonusCount / item.getPromotion().getNumber();
             this.notBonusCount = this.count - c * b;
         }
     }

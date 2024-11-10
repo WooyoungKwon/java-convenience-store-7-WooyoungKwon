@@ -25,5 +25,4 @@ public class ConvenienceValidation {
             throw new IllegalArgumentException(OVER_QUANTITY);
         }
     }
-
 }

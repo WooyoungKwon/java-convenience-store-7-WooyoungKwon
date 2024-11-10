@@ -32,7 +32,7 @@ public class PromotionTest {
                 LocalDate.parse("2024-12-31", formatter).atStartOfDay());
 
         // then
-        assertEquals(promotion.getName(), inputPromotion);
+        assertEquals(promotion.name(), inputPromotion);
     }
 
     @Test

@@ -30,9 +30,9 @@ public class Order {
 
     // 무료로 더 받을 수 있는 수량 안내
     private int needForPromotion(Promotion promotion) {
-        if (this.count % (promotion.getBuyNumber() + promotion.getGetNumber()) == promotion.getBuyNumber()) {
-            if (InputHandler.wantToAdd(this.name, promotion.getGetNumber())) {
-                return promotion.getGetNumber();
+        if (this.count % (promotion.buyNumber() + promotion.getNumber()) == promotion.buyNumber()) {
+            if (InputHandler.wantToAdd(this.name, promotion.getNumber())) {
+                return promotion.getNumber();
             }
         }
         return 0;
@@ -42,8 +42,8 @@ public class Order {
     private int getFreeItemCount(Order order, Item item) {
         Promotion promotion = item.getPromotion();
         // 날짜가 유효한지 검증
-        if (validateDate(promotion)){
-            return order.getCount() / (item.getPromotion().getBuyNumber() + item.getPromotion().getGetNumber());
+        if (validateDate(promotion)) {
+            return order.getCount() / (item.getPromotion().buyNumber() + item.getPromotion().getNumber());
         }
         return 0;
     }
@@ -51,7 +51,7 @@ public class Order {
     private boolean validateDate(Promotion promotion) {
         if (promotion == null) {
             return false;
-        } else if (DateTimes.now().isBefore(promotion.getStartDate()) || DateTimes.now().isAfter(promotion.getEndDate())) {
+        } else if (DateTimes.now().isBefore(promotion.startDate()) || DateTimes.now().isAfter(promotion.endDate())) {
             return false;
         }
         return true;

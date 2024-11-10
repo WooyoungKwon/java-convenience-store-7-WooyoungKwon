@@ -5,8 +5,7 @@ import java.util.Map;
 import store.item.Item;
 
 public class Convenience {
-    ConvenienceValidation validation = new ConvenienceValidation();
-    ConvenienceUtils utils = new ConvenienceUtils(validation);
+    ConvenienceUtils utils = new ConvenienceUtils();
 
     private final Map<String, Item> items = new LinkedHashMap<>();
 
@@ -14,15 +13,11 @@ public class Convenience {
         items.put(utils.createItemKey(item), item);
     }
 
-    public Map<String, Item> getItems() {
-        return items;
-    }
-
     public Item findItem(String itemName) {
         return items.get(itemName);
     }
 
-    public Item getPromotionItem(String itemName) {
-        return items.get("프로모션 " + itemName);
+    public Map<String, Item> getItems() {
+        return items;
     }
 }
