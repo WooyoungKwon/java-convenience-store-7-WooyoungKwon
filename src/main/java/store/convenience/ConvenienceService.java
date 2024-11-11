@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import store.item.Item;
-import store.item.ItemDto;
-import store.item.promotion.PromotionFactory;
 import store.order.Order;
 import store.item.promotion.Promotion;
 import store.receipt.ReceiptDto;

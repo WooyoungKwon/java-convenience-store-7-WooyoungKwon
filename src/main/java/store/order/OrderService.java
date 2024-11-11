@@ -1,7 +1,5 @@
 package store.order;
 
-import static store.io.ConstErrorMessage.INVALID_ORDER_INPUT;
-
 import java.util.ArrayList;
 import java.util.List;
 import store.io.InputHandler;
@@ -12,15 +10,19 @@ public class OrderService {
         while (true) {
             try {
                 List<String> orderInfo = InputHandler.inputOrder();
-                List<Order> orders = new ArrayList<>();
-                for (String order : orderInfo) {
-                    orders.add(new Order(new OrderDto(order)));
-                }
-                return orders;
+                return getOrders(orderInfo);
             } catch (IllegalArgumentException e) {
                 OutputHandler.printGuideMessage(e.getMessage());
                 OutputHandler.printLinebreak();
             }
         }
+    }
+
+    private List<Order> getOrders(List<String> orderInfo) {
+        List<Order> orders = new ArrayList<>();
+        for (String order : orderInfo) {
+            orders.add(new Order(new OrderDto(order)));
+        }
+        return orders;
     }
 }
