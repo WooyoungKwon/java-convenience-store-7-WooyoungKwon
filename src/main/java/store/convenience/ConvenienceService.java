@@ -26,7 +26,6 @@ public class ConvenienceService {
     }
 
 
-
     public void printAllStock() {
         Map<String, Item> items = convenience.getItems();
         Collection<Item> values = items.values();

@@ -23,7 +23,7 @@ public class ConvenienceController {
     private final ReceiptService receiptService;
 
     private ConvenienceController(PromotionService promotionService, ConvenienceService convenienceService,
-                                 OrderService orderService, ReceiptService receiptService) {
+                                  OrderService orderService, ReceiptService receiptService) {
         this.promotionService = promotionService;
         this.convenienceService = convenienceService;
         this.orderService = orderService;
@@ -62,8 +62,7 @@ public class ConvenienceController {
     }
 
     private Receipt orderProcess() {
-        List<Order> orders;
-        orders = orderService.createOrders();
+        List<Order> orders = orderService.createOrders();
         List<ReceiptDto> receiptDtos = convenienceService.purchaseWithReceipt(orders);
         Receipt receipt = receiptService.createReceipt(receiptDtos);
         receipt.calculatePrice();

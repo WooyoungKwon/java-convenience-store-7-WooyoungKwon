@@ -20,7 +20,7 @@ public class OrderDto {
     }
 
     private List<String> parseInput(String input) {
-        if (input.contains("-")){
+        if (input.contains("-")) {
             return Arrays.asList(input.split("-"));
         }
         throw new IllegalArgumentException(INVALID_ORDER_INPUT);
