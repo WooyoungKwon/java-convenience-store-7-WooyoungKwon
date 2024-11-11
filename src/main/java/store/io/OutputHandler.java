@@ -18,7 +18,7 @@ public class OutputHandler {
     public static void printItemCount(Item item) {
         System.out.print("- " + item.getName() + " " + OutputHandler.parseDigits(item.getPrice()) + "원 ");
         if (item.getCount() == 0) {
-            System.out.print("재고 없음");
+            System.out.print("재고 없음 ");
             return;
         }
         System.out.print(item.getCount() + "개 ");
