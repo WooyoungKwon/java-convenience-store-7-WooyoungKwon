@@ -34,10 +34,12 @@ public class ConvenienceController {
         loadIItemsToConvenience();
         while (true) {
             printInfo();
-            Receipt receipt;
+            Receipt receipt = new Receipt();
             try {
                 receipt = orderProcess();
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "\n");
+            }  catch (RuntimeException e) {
                 continue;
             }
             membershipProcess(receipt);
