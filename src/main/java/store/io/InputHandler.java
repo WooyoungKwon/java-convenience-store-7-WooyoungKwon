@@ -13,28 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
-    public static boolean wantToAdd(String name, int getNumber) {
-        OutputHandler.printGuideMessage(ConstMessage.CAN_MORE_FREE_ITEM(name, getNumber));
-        String answer = Console.readLine();
-        OutputHandler.printLinebreak();
-        if (answer.equalsIgnoreCase("y")) {
-            return true;
-        } else if (answer.equalsIgnoreCase("n")) {
-            return false;
-        }
-        throw new IllegalArgumentException(INVALID_INPUT);
-    }
-
     public static boolean yesOrNo(String message) {
-        OutputHandler.printGuideMessage(message);
-        String answer = Console.readLine();
-        OutputHandler.printLinebreak();
-        if (answer.equalsIgnoreCase("y")) {
-            return true;
-        } else if (answer.equalsIgnoreCase("n")) {
-            return false;
+        while (true) {
+            OutputHandler.printGuideMessage(message);
+            String answer = Console.readLine();
+            OutputHandler.printLinebreak();
+            if (answer.equalsIgnoreCase("y")) {
+                return true;
+            } else if (answer.equalsIgnoreCase("n")) {
+                return false;
+            }
+            OutputHandler.printGuideMessage(INVALID_INPUT);
+            OutputHandler.printLinebreak();
         }
-        throw new IllegalArgumentException(INVALID_INPUT);
     }
 
     public static List<String> inputOrder() {

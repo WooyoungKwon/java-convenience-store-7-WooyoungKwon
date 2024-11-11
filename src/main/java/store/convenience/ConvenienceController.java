@@ -62,7 +62,8 @@ public class ConvenienceController {
     }
 
     private Receipt orderProcess() {
-        List<Order> orders = orderService.createOrders(InputHandler.inputOrder());
+        List<Order> orders;
+        orders = orderService.createOrders();
         List<ReceiptDto> receiptDtos = convenienceService.purchaseWithReceipt(orders);
         Receipt receipt = receiptService.createReceipt(receiptDtos);
         receipt.calculatePrice();

@@ -14,13 +14,16 @@ public class OrderDto {
             List<String> parseOrder = parseInput(inputOrder);
             this.name = parseOrder.get(0).substring(1);
             this.count = Integer.parseInt(parseOrder.get(1).substring(0, parseOrder.get(1).length() - 1));
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_ORDER_INPUT);
         }
     }
 
     private List<String> parseInput(String input) {
-        return Arrays.asList(input.split("-"));
+        if (input.contains("-")){
+            return Arrays.asList(input.split("-"));
+        }
+        throw new IllegalArgumentException(INVALID_ORDER_INPUT);
     }
 
     public String getName() {

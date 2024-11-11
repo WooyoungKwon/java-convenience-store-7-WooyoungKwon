@@ -2,6 +2,7 @@ package store.order;
 
 import java.util.ArrayList;
 import java.util.List;
+import store.io.ConstMessage;
 import store.item.promotion.Promotion;
 import store.io.InputHandler;
 import camp.nextstep.edu.missionutils.DateTimes;
@@ -31,7 +32,7 @@ public class Order {
     // 무료로 더 받을 수 있는 수량 안내
     private int needForPromotion(Promotion promotion) {
         if (this.count % (promotion.buyNumber() + promotion.getNumber()) == promotion.buyNumber()) {
-            if (InputHandler.wantToAdd(this.name, promotion.getNumber())) {
+            if (InputHandler.yesOrNo(ConstMessage.CAN_MORE_FREE_ITEM(this.name, promotion.getNumber()))) {
                 return promotion.getNumber();
             }
         }
